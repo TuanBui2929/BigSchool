@@ -1,0 +1,18 @@
+﻿@model IEnumerable<BigSchool.Models.Course>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <ul>
+        @foreach(var coure in Model)
+            {
+                <li>
+                    @coure.Name - @coure.DateTime.ToString("dd/MM/yyyy")
+                </li>
+
+            }
+    </ul>
+</div>
