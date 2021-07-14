@@ -98,30 +98,26 @@ namespace BigSchool.Controllers
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteMine(int id)
-        {         
+        {
             Course x = bigSchoolContext.Courses.FirstOrDefault(m => m.Id == id);
             var y = bigSchoolContext.Attendances.Where(m => m.CourseId == x.Id).ToList();
             if (x != null)
+            {
+                foreach (Attendance att in y)
                 {
-                    foreach( Attendance att in y)
-                    {
-                         bigSchoolContext.Attendances.Remove(att);
-                    }
-       
-                    bigSchoolContext.Courses.Remove(x);
-                    bigSchoolContext.SaveChanges();
-                    return RedirectToAction("Mine");
-                    
+                    bigSchoolContext.Attendances.Remove(att);
                 }
- 
+                bigSchoolContext.Courses.Remove(x);
+                bigSchoolContext.SaveChanges();
+                return RedirectToAction("Mine");
 
+            }
             return View();
+
         }
 
         public ActionResult Edit(int id)
-        {
-           
-          
+        {                   
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -140,7 +136,6 @@ namespace BigSchool.Controllers
         public ActionResult EditMine(Course course)
         {
 
-           // ModelState.Remove("LecturerId");
             if (!ModelState.IsValid)
             {
                 course.Listcategory = bigSchoolContext.Categories.ToList();
@@ -148,9 +143,6 @@ namespace BigSchool.Controllers
 
             }
 
-            //ApplicationUser user = System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>()
-            //    .FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
-            //course.LecturerId = user.Id;
             bigSchoolContext.Courses.AddOrUpdate(course);
             bigSchoolContext.SaveChanges();
 
