@@ -27,6 +27,8 @@ namespace BigSchool.Models
 
         public string Name;
 
+        public string LectureName;
+
         public DateTime DateTime { get; set; }
 
         public int CategoryId { get; set; }
@@ -35,6 +37,11 @@ namespace BigSchool.Models
         public virtual ICollection<Attendance> Attendances { get; set; }
 
         public virtual Category Category { get; set; }
+
         public List<Category> Listcategory;
+
+        public bool isLogin = false;
+        public bool isShowGoing = false;
+        public bool isShowFollow = false;
     }
 }
