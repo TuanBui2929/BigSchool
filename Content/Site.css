@@ -62,7 +62,7 @@ textarea {
 
     }
     .course > li .action{
-        display:none;
+       /* display:none;*/
         left: 70px;
         position: absolute;
     }

@@ -58,7 +58,7 @@ namespace BigSchool.Controllers
             foreach ( Attendance temp in listAttendances)
             {
                 Course course = temp.Course;
-                course.Name = System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>()
+                course.LectureName = System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>()
                  .FindById(course.LecturerId).Name;
                 courses.Add(course);
             }
@@ -116,7 +116,7 @@ namespace BigSchool.Controllers
 
         }
 
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int? id)
         {                   
             if (id == null)
             {
@@ -159,9 +159,8 @@ namespace BigSchool.Controllers
             var listFollwee = context.Followings.Where(p => p.FollowerId ==
             currentUser.Id).ToList();
             //danh sách các khóa học mà người dùng đã đăng ký
-            var listAttendances = context.Attendances.Where(p => p.Attendee ==
-            currentUser.Id).ToList();
-            var courses = new List<Course>();
+            List<Attendance> listAttendances = context.Attendances.Where(p => p.Attendee ==currentUser.Id).ToList();
+            List<Course> courses = new List<Course>();
             foreach (var course in listAttendances)
             {
                 foreach (var item in listFollwee)
@@ -173,6 +172,7 @@ namespace BigSchool.Controllers
                        System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>()
                         .FindById(objCourse.LecturerId).Name;
                         courses.Add(objCourse);
+
                     }
                 }
 

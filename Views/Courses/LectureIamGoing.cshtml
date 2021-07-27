@@ -2,8 +2,10 @@
 
 @{
     ViewBag.Title = "LectureIamGoing";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout =  "~/Views/Shared/_Layout.cshtml";
 }
+
+
 
 <div class="row">
     <ul class="course">
@@ -21,7 +23,7 @@
                 <div class="details">
                     <span class="lecture">@course.LectureName</span>
                     <br />
-                    <span class="category">@course.Category.Name</span>
+                    <span class="category">@course.Category.Name </span>
                 </div>
             </li>
         }

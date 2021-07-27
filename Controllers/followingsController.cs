@@ -32,6 +32,8 @@ namespace BigSchool.Controllers
                 context.SaveChanges();
                 return Ok("cancel");
             }
+
+       
             //set object follow
             follow.FollowerId = userID;
             context.Followings.Add(follow);

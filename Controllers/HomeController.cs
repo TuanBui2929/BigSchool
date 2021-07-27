@@ -15,15 +15,6 @@ namespace BigSchool.Controllers
         public ActionResult Index()
         {
 
-            //BigSchoolContext bigSchoolContext = new BigSchoolContext();
-            //var upcomming = bigSchoolContext.Courses.Where(p => p.DateTime > DateTime.Now).OrderBy(m => m.DateTime).ToList();
-            //foreach (Course i in upcomming)
-            //{
-            //    ApplicationUser user = System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>().FindById(i.LecturerId);
-            //    i.Name = user.Name;
-            //}
-            //return View(upcomming);
-
             BigSchoolContext context = new BigSchoolContext();
             var upcommingCourse = context.Courses.Where(p => p.DateTime >
            DateTime.Now).OrderBy(p => p.DateTime).ToList();
